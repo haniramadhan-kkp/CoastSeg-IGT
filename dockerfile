@@ -22,5 +22,5 @@ ENV PYTHONUNBUFFERED=1
 # Expose port for Jupyter Lab
 EXPOSE 8888
 
-# Default command to run Jupyter Lab using the default environment
-CMD ["pixi", "run", "jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root", "--ServerApp.token=''", "--ServerApp.password=''"]
+# Default command to run Jupyter Lab
+CMD ["pixi", "run", "jupyter", "lab", "--ip=0.0.0.0", "--no-browser", "--allow-root", "--ServerApp.token=''", "--ServerApp.password=''", "--ServerApp.authenticate_external_requests=True"]
