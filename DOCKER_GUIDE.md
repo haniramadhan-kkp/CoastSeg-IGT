@@ -38,7 +38,7 @@ sudo usermod -aG docker $USER
     ```bash
     docker compose up
     ```
-3.  **Buka Browser** dan akses: `http://localhost:8888`
+3.  **Buka Browser** dan akses: `http://localhost:8889`
 
 ### Opsi B: Mengelola via Antarmuka Grafis (Docker Desktop GUI)
 Meskipun pemicu awal harus melalui terminal, setelah itu Anda bisa mengelolanya tanpa mengetik lagi:
@@ -48,7 +48,7 @@ Meskipun pemicu awal harus melalui terminal, setelah itu Anda bisa mengelolanya 
 3.  **Muncul sebagai Group:** Anda akan melihat grup bernama `coastseg-igt` (atau sesuai nama folder proyek Anda).
 4.  **Kontrol Mouse:**
     -   **Start/Stop:** Gunakan tombol **Play/Stop** di sebelah kanan nama proyek untuk menyalakan atau mematikan seluruh sistem.
-    -   **Open in Browser:** Klik ikon **"Open with browser"** atau klik angka port `8888:8888` untuk langsung membuka Jupyter Lab.
+    -   **Open in Browser:** Klik ikon **"Open with browser"** atau klik angka port `8889:8888` untuk langsung membuka Jupyter Lab.
     -   **Logs:** Klik nama grup proyek untuk melihat pesan sistem jika terjadi error.
     -   **Cleanup:** Jika ingin menghapus container untuk menghemat ruang (tanpa menghapus data), klik ikon **Tempat Sampah (Delete)**.
 

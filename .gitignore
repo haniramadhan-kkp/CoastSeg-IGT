@@ -7,7 +7,8 @@ certifications.json
 certifications.json
 
 # ignore the downloaded tide_model
-/*tide_model*/*
+# /*tide_model*/*
+
 # ignore any geojson, csv, py files in the main coastseg directory
 /*.geojson
 /*.csv
@@ -30,27 +31,27 @@ certifications.json
 !Download_tide_model.ipynb
 !src/coastseg/tide_model/tide_regions_map.geojson
 
-myscripts/*
-debug_scripts/sessions/*
-src/coastseg/shorelines/*
-src/coastseg/downloaded_models/*
-src/*/downloaded_models/*
-src/*/saved_transects/*
-src/*/test_new_model/*
-src/*/working_new_downloaded_models/*
-*tide_models*
-src/coastseg/transects/Transects_grid_region*
+# myscripts/*
+# debug_scripts/sessions/*
+# src/coastseg/shorelines/*
+# src/coastseg/downloaded_models/*
+# src/*/downloaded_models/*
+# src/*/saved_transects/*
+# src/*/test_new_model/*
+# src/*/working_new_downloaded_models/*
+# *tide_models*
+# src/coastseg/transects/Transects_grid_region*
 *log_*.txt
 
 
-*downloaded_shorelines/*
-./downloaded_shorelines/*
+# *downloaded_shorelines/*
+# ./downloaded_shorelines/*
 
 data\*
 sessions\*
 ./sessions/*
 /sessions/
-src\*\downloaded_models\*
+# src\*\downloaded_models\*
 *segmentation_data_*
 
 # VScode files
@@ -195,4 +196,4 @@ dmypy.json
 .pixi
 *.egg-info
 
-/tide_model/region0/
+# /tide_model/region0/
