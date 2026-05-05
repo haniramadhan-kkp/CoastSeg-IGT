@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="aoi" id="aoi">
+	<SimpleField name="fid" type="float"></SimpleField>
+	<SimpleField name="luas" type="float"></SimpleField>
+	<SimpleField name="luas (km)" type="float"></SimpleField>
+</Schema>
+<Folder><name>aoi</name>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#aoi">
+		<SimpleData name="fid">16</SimpleData>
+		<SimpleData name="luas">40783182.12</SimpleData>
+		<SimpleData name="luas (km)">40.78</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Polygon><outerBoundaryIs><LinearRing><coordinates>110.692220476798,-6.54967045534852 110.643743447186,-6.5393986738698 110.656431774837,-6.47977593415854 110.706709773376,-6.49064964073634 110.692220476798,-6.54967045534852</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry>
+  </Placemark>
+</Folder>
+</Document></kml>
