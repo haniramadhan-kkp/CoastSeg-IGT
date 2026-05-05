@@ -1,0 +1,17 @@
+services:
+  coastseg:
+    build: .
+    container_name: coastseg_app
+    ports:
+      - "8888:8888"
+    volumes:
+      # Map current directory to /app for live code updates if needed
+      - .:/app
+      # Ensure data and sessions are persistent on host machine
+      - ./data:/app/data
+      - ./sessions:/app/sessions
+      - ./tide_model:/app/tide_model
+      - ./logs:/app/logs
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped

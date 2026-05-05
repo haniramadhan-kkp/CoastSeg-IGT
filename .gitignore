@@ -23,6 +23,9 @@ certifications.json
 
 
 # But don't ignore these specific files
+!dockerfile
+!docker-compose.yml
+!DOCKER_GUIDE.md
 !download_tide_model.py
 !Download_tide_model.ipynb
 !src/coastseg/tide_model/tide_regions_map.geojson
