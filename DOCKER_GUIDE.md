@@ -1,61 +1,81 @@
-# Panduan Instalasi Cepat CoastSeg-IGT (Docker)
+# Panduan Instalasi Universal CoastSeg-IGT (Docker)
 
-Proyek ini telah dikonfigurasi agar dapat dijalankan dengan mudah menggunakan Docker. Tidak perlu menginstal Python, GDAL, atau TensorFlow secara manual di komputer Anda.
+Proyek ini telah dikonfigurasi agar dapat dijalankan dengan mudah menggunakan Docker di **Windows (WSL2)**, **macOS (Intel & M1/M2/M3)**, dan **Linux**. 
 
-## Prasyarat: Instalasi Docker
-
-Sebelum memulai, pastikan Anda telah menginstal Docker di komputer Anda:
-
-### 1. Windows
-- Unduh dan instal **[Docker Desktop for Windows](https://docs.docker.com/desktop/install/windows-install/)**.
-- Saat instalasi, pastikan opsi **"Use WSL 2 instead of Hyper-V"** dicentang (direkomendasikan).
-- Restart komputer setelah instalasi selesai.
-
-### 2. macOS
-- Unduh dan instal **[Docker Desktop for Mac](https://docs.docker.com/desktop/install/mac-install/)**.
-- Pilih versi yang sesuai dengan prosesor Anda (**Apple Silicon** untuk M1/M2/M3 atau **Intel Chip** untuk Mac lama).
-
-### 3. Linux (Ubuntu/Debian)
-Jalankan perintah berikut di terminal:
-```bash
-# Hapus versi lama jika ada
-sudo apt-get remove docker docker-engine docker.io containerd runc
-
-# Instal Docker Engine & Compose
-sudo apt-get update
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
-
-# Tambahkan user ke grup docker (agar tidak perlu sudo setiap saat)
-sudo usermod -aG docker $USER
-```
-*Catatan: Anda mungkin perlu logout dan login kembali agar perubahan grup berlaku.*
-
-## Langkah-langkah Menjalankan CoastSeg
-
-### Opsi A: Menggunakan Terminal (Paling Cepat)
-1.  **Buka Terminal** (atau CMD/PowerShell) di folder proyek ini.
-2.  **Jalankan Perintah:**
-    ```bash
-    docker compose up
-    ```
-3.  **Buka Browser** dan akses: `http://localhost:8889`
-
-### Opsi B: Mengelola via Antarmuka Grafis (Docker Desktop GUI)
-Meskipun pemicu awal harus melalui terminal, setelah itu Anda bisa mengelolanya tanpa mengetik lagi:
-
-1.  **Inisialisasi (Hanya Sekali):** Jalankan perintah `docker compose up -d` di terminal pada folder proyek. Perintah `-d` (detached) akan menjalankan aplikasi di latar belakang.
-2.  **Buka Docker Desktop:** Klik tab **"Containers"** di kolom sebelah kiri.
-3.  **Muncul sebagai Group:** Anda akan melihat grup bernama `coastseg-igt` (atau sesuai nama folder proyek Anda).
-4.  **Kontrol Mouse:**
-    -   **Start/Stop:** Gunakan tombol **Play/Stop** di sebelah kanan nama proyek untuk menyalakan atau mematikan seluruh sistem.
-    -   **Open in Browser:** Klik ikon **"Open with browser"** atau klik angka port `8889:8888` untuk langsung membuka Jupyter Lab.
-    -   **Logs:** Klik nama grup proyek untuk melihat pesan sistem jika terjadi error.
-    -   **Cleanup:** Jika ingin menghapus container untuk menghemat ruang (tanpa menghapus data), klik ikon **Tempat Sampah (Delete)**.
-
-## Catatan Penting
-- **Data Tetap Aman**: Semua data yang diunduh di folder `data/` dan `sessions/` akan tersimpan di komputer Anda, bukan di dalam container. Jika container dihapus, data Anda tidak akan hilang.
-- **CoastSat Classifier**: Model `best.h5` sudah otomatis terpasang dan siap digunakan di dalam notebook `SDS_coastsat_classifier.ipynb`.
-- **Berhenti**: Tekan `Ctrl+C` di terminal untuk menghentikan aplikasi.
+## Keuntungan Menggunakan Docker
+- **Tanpa Konflik Library**: Tidak perlu menginstal Python, GDAL, atau TensorFlow secara manual.
+- **Konsistensi**: Apa yang berjalan di laptop pengembang akan berjalan sama persis di laptop Anda.
+- **Isolasi**: Lingkungan proyek tidak akan mengganggu perangkat lunak lain di komputer Anda.
 
 ---
-*Dibuat untuk memudahkan kolaborasi dan pengajaran CoastSeg-IGT.*
+
+## 1. Persiapan: Instalasi Docker
+
+Pastikan Docker Desktop sudah terpasang di komputer Anda:
+
+- **Windows**: Instal [Docker Desktop](https://docs.docker.com/desktop/install/windows-install/) (Gunakan backend WSL2).
+- **macOS**: Instal [Docker Desktop](https://docs.docker.com/desktop/install/mac-install/) (Pilih versi Apple Silicon untuk chip M1/M2/M3).
+- **Linux**: Instal [Docker Engine](https://docs.docker.com/engine/install/ubuntu/) dan [Docker Compose](https://docs.docker.com/compose/install/).
+
+---
+
+## 2. Cara Menjalankan Proyek
+
+1. **Buka Terminal** (CMD, PowerShell, atau Terminal Mac/Linux) di folder proyek ini.
+2. **Jalankan Perintah Build & Up**:
+   ```bash
+   docker compose up -d --build
+   ```
+   *Catatan: Proses pertama kali mungkin memakan waktu 5-10 menit untuk mengunduh semua library.*
+3. **Akses Aplikasi**:
+   Buka browser Anda dan masukkan alamat:
+   [http://localhost:8889](http://localhost:8889)
+
+---
+
+## 3. Catatan Khusus Pengguna Mac (M1/M2/M3)
+
+Proyek ini telah diotomatisasi untuk menggunakan **Rosetta 2**. 
+- Anda tidak perlu melakukan pengaturan tambahan. 
+- Baris `platform: linux/amd64` di file konfigurasi kami akan memberitahu Docker untuk menjalankan lingkungan Intel yang stabil di atas chip Apple Silicon Anda secara otomatis.
+- Jika Docker menanyakan izin untuk menggunakan Rosetta, pilih **"Allow"** atau **"Install"**.
+
+---
+
+## 4. Tips Penggunaan
+
+### Menghentikan Aplikasi
+Untuk mematikan sistem tanpa menghapus data:
+```bash
+docker compose stop
+```
+
+### Menjalankan Kembali
+Setelah instalasi pertama, Anda cukup menjalankan:
+```bash
+docker compose start
+```
+
+### Reset Lingkungan (Jika Error)
+Jika terjadi masalah pada library, Anda bisa membangun ulang dari nol:
+```bash
+docker compose down
+docker compose up -d --build
+```
+
+### Lokasi Data
+Data Anda **TIDAK AKAN HILANG** meskipun container dihapus. Folder berikut disinkronkan langsung dengan laptop Anda:
+- `/data`: Hasil download citra satelit.
+- `/sessions`: Hasil ekstraksi garis pantai.
+- `/logs`: Catatan aktivitas sistem.
+
+---
+
+## 5. Troubleshooting (Masalah Umum)
+
+- **Port 8889 sudah digunakan**: Jika muncul error port, buka `docker-compose.yml` dan ubah angka `8889` menjadi angka lain (misal `9000`).
+- **Memory/RAM Low**: CoastSeg membutuhkan minimal 4GB RAM yang dialokasikan ke Docker (cek di Docker Desktop Settings -> Resources).
+- **Gagal Login GEE**: Pastikan Anda sudah memiliki akun Google Earth Engine dan ikuti instruksi autentikasi di dalam notebook.
+
+---
+*Panduan ini dibuat untuk memastikan CoastSeg-IGT dapat diakses oleh semua peneliti dengan hambatan teknis seminimal mungkin.*

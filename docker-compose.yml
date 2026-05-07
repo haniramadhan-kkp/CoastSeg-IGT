@@ -1,5 +1,6 @@
 services:
   coastseg:
+    platform: linux/amd64
     build: .
     container_name: coastseg_app
     ports:
